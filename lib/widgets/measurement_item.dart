@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/measurement.dart';
 import '../utils/get_calorie_level.dart';
@@ -40,7 +41,7 @@ class MeasurementItem extends StatelessWidget {
                   color: Colors.grey.shade700,
                 ),
               ),
-              Text(data.date.toString(),
+              Text(DateFormat('yyyy-MM-dd HH:mm').format(data.date),
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 15,
