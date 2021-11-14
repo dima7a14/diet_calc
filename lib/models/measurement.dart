@@ -1,4 +1,4 @@
-import '../common.dart';
+import './common.dart';
 
 class Measurement {
   final String id;

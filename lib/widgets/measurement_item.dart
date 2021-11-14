@@ -7,7 +7,7 @@ import '../utils/get_calorie_level.dart';
 class MeasurementItem extends StatelessWidget {
   final Measurement data;
 
-  MeasurementItem(this.data);
+  MeasurementItem({required this.data, Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,14 @@ class MeasurementItem extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.purple, width: 2)),
+                  border: Border.all(
+                      color: Theme.of(context).primaryColorDark, width: 2)),
               child: Text(
                 calorieLevel.toString(),
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: Colors.purple),
+                    color: Theme.of(context).primaryColorDark),
               )),
           Container(
               child: Column(
