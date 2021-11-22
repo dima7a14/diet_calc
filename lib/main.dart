@@ -18,8 +18,10 @@ class DietApp extends StatelessWidget {
     return MaterialApp(
       title: 'Diet Calculator',
       theme: ThemeData(
-          primarySwatch: Colors.green,
-          scaffoldBackgroundColor: Colors.grey.shade300),
+        primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.grey.shade300,
+        fontFamily: 'Kalam',
+      ),
       home: HomePage(),
     );
   }

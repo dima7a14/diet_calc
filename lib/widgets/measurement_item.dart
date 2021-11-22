@@ -37,7 +37,7 @@ class MeasurementItem extends StatelessWidget {
               Text(
                 data.name,
                 style: TextStyle(
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w700,
                   fontSize: 16,
                   color: Colors.grey.shade700,
                 ),
