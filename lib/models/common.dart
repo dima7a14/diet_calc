@@ -3,6 +3,17 @@ enum Sex {
   female,
 }
 
+extension SexExtension on Sex {
+  String get name {
+    switch (this) {
+      case Sex.male:
+        return 'Male';
+      case Sex.female:
+        return 'Female';
+    }
+  }
+}
+
 enum Activity {
   minimal,
   weak,

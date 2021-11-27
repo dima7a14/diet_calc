@@ -1,111 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 
-import './models/common.dart';
-import './models/measurement.dart';
-import './widgets/measurement_list.dart';
-import './widgets/new_measurement.dart';
+import './screens/values.dart';
 
 void main() {
-  runApp(DietApp());
+  runApp(App());
 }
 
-const uuid = Uuid();
-
-class DietApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Diet Calculator',
+      title: 'Calories Calculator',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blueGrey,
         scaffoldBackgroundColor: Colors.grey.shade300,
-        fontFamily: 'Kalam',
       ),
-      home: HomePage(),
+      home: MainWidget(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  List<Measurement> _userMeasurements = [
-    Measurement(
-        id: uuid.v4(),
-        name: 'Ana',
-        sex: Sex.female,
-        weight: 72,
-        height: 165,
-        activity: Activity.average,
-        age: 28),
-    Measurement(
-        id: uuid.v4(),
-        name: 'Dima',
-        sex: Sex.male,
-        weight: 75,
-        height: 169,
-        activity: Activity.minimal,
-        age: 29),
-  ];
-
-  void _addMeasurement(String name, Sex sex, double weight, double height,
-      int age, Activity activity) {
-    final newMeasurement = Measurement(
-        id: uuid.v4(),
-        name: name,
-        sex: sex,
-        weight: weight,
-        height: height,
-        age: age,
-        activity: activity);
-
-    setState(() {
-      _userMeasurements.add(newMeasurement);
-    });
-  }
-
-  void startAddNewMeasurement(BuildContext ctx) {
-    showModalBottomSheet(
-        context: ctx,
-        builder: (_) {
-          return NewMeasurement(_addMeasurement);
-        });
-  }
-
+class MainWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Diet Calculator'),
-        actions: [
-          IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () => startAddNewMeasurement(context)),
-        ],
+        title: const Text('Calories Calculator'),
       ),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
               width: double.infinity,
-              child: const Card(
-                child: Text('Chart'),
-              ),
+              child: const Values(),
             ),
-            MeasurementList(_userMeasurements),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () => startAddNewMeasurement(context)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
